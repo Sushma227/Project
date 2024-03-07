@@ -1,0 +1,24 @@
+{
+	"name": "LS_OnPremiseSqlServer",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "Integrated Security=True;Data Source=ABHIMA\\SQLEXPRESS;Initial Catalog=retail",
+			"userName": "ABHIMA\\SUSH-PC",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "LS_AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "sqlpass"
+			}
+		},
+		"connectVia": {
+			"referenceName": "IRSelfHosted",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

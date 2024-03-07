@@ -1,0 +1,53 @@
+{
+	"name": "DS_SqlServerTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_OnPremiseSqlServer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Invoice",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StockCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InvoiceDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Price",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Customer_ID",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Country",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "onlineRetail"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
