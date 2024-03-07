@@ -18,7 +18,8 @@
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     fileList: true) ~> source1"
+				"     fileList: true,",
+				"     multiLineRow: true) ~> source1"
 			]
 		}
 	}
