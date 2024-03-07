@@ -26,7 +26,13 @@
 						}
 					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_http",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
