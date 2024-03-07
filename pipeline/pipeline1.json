@@ -57,7 +57,7 @@
 						"referenceName": "DS_Datalake",
 						"type": "DatasetReference",
 						"parameters": {
-							"Folder": {
+							"FolderName": {
 								"value": "http",
 								"type": "Expression"
 							}
@@ -115,7 +115,7 @@
 						"referenceName": "DS_Datalake",
 						"type": "DatasetReference",
 						"parameters": {
-							"Folder": {
+							"FolderName": {
 								"value": "sqlserver",
 								"type": "Expression"
 							}
