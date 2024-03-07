@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DS_Datalake",
+						"referenceName": "DS_DLhttp",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
@@ -19,6 +19,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     fileList: true,",
+				"     partitionRootPath: '/Sushma227/Datafactory/main/',",
 				"     multiLineRow: true) ~> source1"
 			]
 		}
