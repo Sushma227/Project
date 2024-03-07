@@ -54,14 +54,8 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_Datalake",
-						"type": "DatasetReference",
-						"parameters": {
-							"FolderName": {
-								"value": "http",
-								"type": "Expression"
-							}
-						}
+						"referenceName": "DS_DLhttp",
+						"type": "DatasetReference"
 					}
 				]
 			},
@@ -112,14 +106,8 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_Datalake",
-						"type": "DatasetReference",
-						"parameters": {
-							"FolderName": {
-								"value": "sqlserver",
-								"type": "Expression"
-							}
-						}
+						"referenceName": "DS_DLsqlserver",
+						"type": "DatasetReference"
 					}
 				]
 			},
