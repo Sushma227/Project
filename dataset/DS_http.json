@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "HttpServerLocation",
-				"relativeUrl": "Sushma227/Datafactory/edit/main/Supermart%20Grocery%20Sales%20-%20Retail%20Analytics%20Dataset.csv"
+				"relativeUrl": "Sushma227/Datafactory/main/Supermart%20Grocery%20Sales%20-%20Retail%20Analytics%20Dataset.csv"
 			},
 			"columnDelimiter": ",",
 			"rowDelimiter": "\n",
