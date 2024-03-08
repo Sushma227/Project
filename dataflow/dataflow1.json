@@ -12,22 +12,24 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_Datalake",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "derivedColumn1"
 				},
 				{
-					"name": "derivedColumn2"
+					"name": "filter1"
 				},
 				{
-					"name": "derivedColumn3"
-				},
-				{
-					"name": "derivedColumn4"
-				},
-				{
-					"name": "lookup1"
+					"name": "aggregate1"
 				}
 			],
 			"scriptLines": [
@@ -44,14 +46,25 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"derivedColumn2 derive() ~> derivedColumn1",
-				"derivedColumn3 derive() ~> derivedColumn2",
-				"derivedColumn4 derive() ~> derivedColumn3",
-				"lookup1 derive() ~> derivedColumn4",
-				"source1 lookup(,",
-				"     multiple: false,",
-				"     pickup: 'any',",
-				"     broadcast: 'auto')~> lookup1"
+				"source1 derive(Time = split(InvoiceDate, \" \")[2],",
+				"          Date = split(InvoiceDate,\" \")[1],",
+				"          {Total Price} = round(Price*Quantity, 2)) ~> derivedColumn1",
+				"derivedColumn1 filter(Quantity >= 10 && Country == \"United Kingdom\") ~> filter1",
+				"filter1 aggregate(groupBy(Customer_ID,",
+				"          Invoice,",
+				"          Description,",
+				"          Price,",
+				"          {Total Price},",
+				"          Date),",
+				"     Quantitytotal = sum(Quantity)) ~> aggregate1",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
