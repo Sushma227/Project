@@ -36,9 +36,11 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source(allowSchemaDrift: true,",
-				"     validateSchema: false,",
+				"     validateSchema: true,",
+				"     inferDriftedColumnTypes: true,",
 				"     ignoreNoFilesFound: false,",
-				"     fileList: true) ~> source2"
+				"     fileList: true,",
+				"     multiLineRow: true) ~> source2"
 			]
 		}
 	}
