@@ -15,10 +15,6 @@
 				},
 				"secretName": "sqlpass"
 			}
-		},
-		"connectVia": {
-			"referenceName": "IRSelfHosted",
-			"type": "IntegrationRuntimeReference"
 		}
 	}
 }
