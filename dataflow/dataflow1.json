@@ -22,7 +22,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "DS_Datalake",
+						"referenceName": "DS_AzureSqlTable1",
 						"type": "DatasetReference"
 					},
 					"name": "sink2"
@@ -136,11 +136,16 @@
 				"     Sales = sum(Sales)) ~> aggregate2",
 				"aggregate2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     umask: 0022,",
-				"     preCommands: [],",
-				"     postCommands: [],",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink2"
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     preCommands: [],",
+				"     postCommands: []) ~> sink2"
 			]
 		}
 	}
