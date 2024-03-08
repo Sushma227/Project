@@ -6,41 +6,29 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DS_DLhttp",
+						"referenceName": "DS_DLsqlserver",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
 				}
 			],
 			"sinks": [],
-			"transformations": [
-				{
-					"name": "filter1"
-				},
-				{
-					"name": "aggregate1"
-				}
-			],
+			"transformations": [],
 			"scriptLines": [
 				"source(output(",
-				"          {Order ID} as string,",
-				"          {Customer Name} as string,",
-				"          Category as string,",
-				"          {Sub Category} as string,",
-				"          City as string,",
-				"          {Order Date} as string,",
-				"          Region as string,",
-				"          Sales as string,",
-				"          Discount as string,",
-				"          Profit as string,",
-				"          State as string",
+				"          Invoice as string 'Int',",
+				"          StockCode as string 'Int',",
+				"          Description as string 'nvarchar',",
+				"          Quantity as short 'short',",
+				"          InvoiceDate as string 'date',",
+				"          Price as double 'double',",
+				"          Customer_ID as short 'int',",
+				"          Country as string 'string'",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 filter(startsWith({Order ID}, \"O\")) ~> filter1",
-				"filter1 aggregate(groupBy(Sales),",
-				"     SumSales = sum(Sales)) ~> aggregate1"
+				"     ignoreNoFilesFound: false,",
+				"     fileList: true) ~> source1"
 			]
 		}
 	}
