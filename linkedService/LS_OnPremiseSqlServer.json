@@ -1,6 +1,5 @@
 {
 	"name": "LS_OnPremiseSqlServer",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "SqlServer",
@@ -17,8 +16,9 @@
 			}
 		},
 		"connectVia": {
-			"referenceName": "IRSelfHosted",
+			"referenceName": "IRsqlserver",
 			"type": "IntegrationRuntimeReference"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
