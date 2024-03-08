@@ -13,22 +13,45 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "derivedColumn2"
+				},
+				{
+					"name": "derivedColumn3"
+				},
+				{
+					"name": "derivedColumn4"
+				},
+				{
+					"name": "lookup1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
-				"          Invoice as string 'Int',",
-				"          StockCode as string 'Int',",
-				"          Description as string 'nvarchar',",
-				"          Quantity as short 'short',",
-				"          InvoiceDate as string 'date',",
-				"          Price as double 'double',",
-				"          Customer_ID as short 'int',",
-				"          Country as string 'string'",
+				"          Invoice as string,",
+				"          StockCode as string,",
+				"          Description as string,",
+				"          Quantity as short,",
+				"          InvoiceDate as string,",
+				"          Price as double,",
+				"          Customer_ID as short,",
+				"          Country as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
-				"     fileList: true) ~> source1"
+				"     ignoreNoFilesFound: false) ~> source1",
+				"derivedColumn2 derive() ~> derivedColumn1",
+				"derivedColumn3 derive() ~> derivedColumn2",
+				"derivedColumn4 derive() ~> derivedColumn3",
+				"lookup1 derive() ~> derivedColumn4",
+				"source1 lookup(,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookup1"
 			]
 		}
 	}
