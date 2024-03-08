@@ -28,31 +28,15 @@
 					"name": "sink2"
 				}
 			],
+
+
 			"transformations": [
 				{
 					"name": "derivedColumn1"
 				},
 				{
 					"name": "filter1"
-				},
-				{
-					"name": "aggregate1"
-				},
-				{
-					"name": "derivedColumn2"
-				},
-				{
-					"name": "join1"
-				},
-				{
-					"name": "select1",
-					"description": "Renaming join1 to select1 with columns 'Order ID, Customer Name, Category, Sub Category, City, Order Date, Sales, Discount, Profit, State, Invoice, Customer_ID, Description, Price, Total Price, Date, Quantitytotal'"
-				},
-				{
-					"name": "filter2"
-				},
-				{
-					"name": "aggregate2"
+
 				}
 			],
 			"scriptLines": [
@@ -84,6 +68,7 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
+
 				"     ignoreNoFilesFound: false) ~> source2",
 				"source1 derive(Time = split(InvoiceDate, \" \")[2],",
 				"          Date = split(InvoiceDate,\" \")[1],",
@@ -146,6 +131,20 @@
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     preCommands: [],",
 				"     postCommands: []) ~> sink2"
+=======
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 filter(startsWith({Order ID}, \"O\")) ~> filter1",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     outputAssertFailedRows: true,",
+				"     assertFailure_container: 'outpur',",
+				"     partitionBy('hash', 1)) ~> sink1"
+
 			]
 		}
 	}
