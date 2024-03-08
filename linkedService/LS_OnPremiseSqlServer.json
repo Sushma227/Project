@@ -16,7 +16,7 @@
 			}
 		},
 		"connectVia": {
-			"referenceName": "IRsqlserver",
+			"referenceName": "integrationRuntime",
 			"type": "IntegrationRuntimeReference"
 		}
 	},
