@@ -10,6 +10,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_DLhttp",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
 				}
 			],
 			"sinks": [
@@ -18,7 +25,7 @@
 						"referenceName": "DS_Datalake",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "sink2"
 				}
 			],
 			"transformations": [
@@ -30,6 +37,22 @@
 				},
 				{
 					"name": "aggregate1"
+				},
+				{
+					"name": "derivedColumn2"
+				},
+				{
+					"name": "join1"
+				},
+				{
+					"name": "select1",
+					"description": "Renaming join1 to select1 with columns 'Order ID, Customer Name, Category, Sub Category, City, Order Date, Sales, Discount, Profit, State, Invoice, Customer_ID, Description, Price, Total Price, Date, Quantitytotal'"
+				},
+				{
+					"name": "filter2"
+				},
+				{
+					"name": "aggregate2"
 				}
 			],
 			"scriptLines": [
@@ -46,6 +69,22 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
+				"source(output(",
+				"          {Order ID} as string,",
+				"          {Customer Name} as string,",
+				"          Category as string,",
+				"          {Sub Category} as string,",
+				"          City as string,",
+				"          {Order Date} as string,",
+				"          Region as string,",
+				"          Sales as short,",
+				"          Discount as double,",
+				"          Profit as double,",
+				"          State as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source2",
 				"source1 derive(Time = split(InvoiceDate, \" \")[2],",
 				"          Date = split(InvoiceDate,\" \")[1],",
 				"          {Total Price} = round(Price*Quantity, 2)) ~> derivedColumn1",
@@ -57,14 +96,51 @@
 				"          {Total Price},",
 				"          Date),",
 				"     Quantitytotal = sum(Quantity)) ~> aggregate1",
-				"aggregate1 sink(allowSchemaDrift: true,",
+				"filter2 derive(Invoice = \"489434\") ~> derivedColumn2",
+				"derivedColumn2, aggregate1 join(derivedColumn2@Invoice == aggregate1@Invoice,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 select(mapColumn(",
+				"          {Order ID},",
+				"          {Customer Name},",
+				"          Category,",
+				"          {Sub Category},",
+				"          City,",
+				"          {Order Date},",
+				"          Sales,",
+				"          Discount,",
+				"          Profit,",
+				"          State,",
+				"          Invoice = derivedColumn2@Invoice,",
+				"          Customer_ID,",
+				"          Description,",
+				"          Price,",
+				"          {Total Price},",
+				"          Date,",
+				"          Quantitytotal",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"source2 filter(!startsWith({Order ID}, '\\\"')) ~> filter2",
+				"select1 aggregate(groupBy({Order ID},",
+				"          {Customer Name},",
+				"          Category,",
+				"          {Sub Category},",
+				"          {Total Price},",
+				"          Date,",
+				"          Discount,",
+				"          City,",
+				"          Profit),",
+				"     Sales = sum(Sales)) ~> aggregate2",
+				"aggregate2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     partitionBy('hash', 1)) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> sink2"
 			]
 		}
 	}
