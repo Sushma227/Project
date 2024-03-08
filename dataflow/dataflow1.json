@@ -39,8 +39,8 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source1 filter(startsWith({Order ID}, \"O\")) ~> filter1",
-				"filter1 aggregate(groupBy(City),",
-				"     Sales = sum(Sales)) ~> aggregate1"
+				"filter1 aggregate(groupBy(Sales),",
+				"     SumSales = sum(Sales)) ~> aggregate1"
 			]
 		}
 	}

@@ -127,7 +127,7 @@
 							{
 								"source": {
 									"name": "Sales",
-									"type": "Int16",
+									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
