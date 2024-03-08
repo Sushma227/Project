@@ -1,6 +1,5 @@
 {
 	"name": "LS_OnPremiseSqlServer",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "SqlServer",
@@ -15,6 +14,11 @@
 				},
 				"secretName": "sqlpass"
 			}
+		},
+		"connectVia": {
+			"referenceName": "IRsqlserver",
+			"type": "IntegrationRuntimeReference"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
