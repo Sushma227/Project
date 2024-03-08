@@ -16,9 +16,6 @@
 			"transformations": [
 				{
 					"name": "filter1"
-				},
-				{
-					"name": "aggregate1"
 				}
 			],
 			"scriptLines": [
@@ -38,9 +35,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 filter(startsWith({Order ID}, \"O\")) ~> filter1",
-				"filter1 aggregate(groupBy(Sales),",
-				"     SumSales = sum(Sales)) ~> aggregate1"
+				"source1 filter(startsWith({Order ID}, \"O\")) ~> filter1"
 			]
 		}
 	}
