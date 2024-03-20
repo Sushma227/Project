@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "Datafactory20324"
+		},
+		"LS_AzureDataLakeStorage_accountKey": {
+			"value": ""
+		},
+		"LS_AzureSqlDatabase_connectionString": {
+			"value": ""
+		},
+		"LS_OnPremiseSqlServer_connectionString": {
+			"value": "Integrated Security=True;Data Source=ABHIMA\\SQLEXPRESS;Initial Catalog=retail"
+		},
+		"LS_AzureDataLakeStorage_properties_typeProperties_url": {
+			"value": "https://datalake3624.dfs.core.windows.net/"
+		},
+		"LS_AzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://KV-onpremisesql1.vault.azure.net/"
+		},
+		"LS_HttpServer_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/"
+		},
+		"LS_OnPremiseSqlServer_properties_typeProperties_userName": {
+			"value": "ABHIMA\\SUSH-PC"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
