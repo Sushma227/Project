@@ -6,7 +6,7 @@
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
 			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=sqlserver8324.database.windows.net;initial catalog=sqldb;user id=sqladmin",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDM1MDMxQzdGLTA1NjktNEY1Ni1CMTE0LTk5MzQ3NzY5MENDNV9jMmNhNGRmZS0yN2IzLTRlNzYtYWVmZC05ZjcyYWJlYTEyZjciDQp9"
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDEwQkNEM0RDLUQyQzYtNDRDRC05OEE2LUFCNEY1MDczRDFFM183YmFkMmIyOS04YWMzLTQyMWEtODViZC1hNTVlYjM3OGJhNjAiDQp9"
 		}
 	}
 }
