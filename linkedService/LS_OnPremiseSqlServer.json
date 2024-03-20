@@ -12,8 +12,12 @@
 					"referenceName": "LS_AzureKeyVault",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "sqlpass"
+				"secretName": "sqlserverpass"
 			}
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/linkedservices"
